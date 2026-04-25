@@ -1,0 +1,23 @@
+# Python
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+htmlcov/
+*.log
+dist/
+venv/
+.eggs/
+develop-eggs/
+*.egg-info/
+.tox/
+.mypy_cache/
+Desktop.ini
+.ruff_cache/
+.Python
+*.egg
+.pytest_cache/
+.env
+.cache/
