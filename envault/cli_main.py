@@ -1,4 +1,6 @@
-"""Entry point that assembles all CLI command groups."""
+"""Entry-point that wires all sub-command groups into the root CLI."""
+
+from __future__ import annotations
 
 import click
 
@@ -15,25 +17,27 @@ from envault.template_cli import template_cmd
 from envault.lint_cli import lint_cmd
 from envault.alias_cli import alias_cmd
 from envault.watch_cli import watch_cmd
+from envault.schema_cli import schema_cmd
+from envault.env_check_cli import check_cmd
+from envault.share_cli import share_cmd
 
 
-cli.add_command(audit_cmd, name="audit")
-cli.add_command(diff_cmd, name="diff")
-cli.add_command(rotate_cmd, name="rotate")
-cli.add_command(search_cmd, name="search")
-cli.add_command(copy_cmd, name="copy")
-cli.add_command(snapshot_cmd, name="snapshot")
-cli.add_command(tag_cmd, name="tag")
-cli.add_command(ttl_cmd, name="ttl")
-cli.add_command(template_cmd, name="template")
-cli.add_command(lint_cmd, name="lint")
-cli.add_command(alias_cmd, name="alias")
-cli.add_command(watch_cmd, name="watch")
+cli.add_command(audit_cmd)
+cli.add_command(diff_cmd)
+cli.add_command(rotate_cmd)
+cli.add_command(search_cmd)
+cli.add_command(copy_cmd)
+cli.add_command(snapshot_cmd)
+cli.add_command(tag_cmd)
+cli.add_command(ttl_cmd)
+cli.add_command(template_cmd)
+cli.add_command(lint_cmd)
+cli.add_command(alias_cmd)
+cli.add_command(watch_cmd)
+cli.add_command(schema_cmd)
+cli.add_command(check_cmd)
+cli.add_command(share_cmd)
 
 
-def main():
+def main() -> None:  # pragma: no cover
     cli()
-
-
-if __name__ == "__main__":
-    main()
