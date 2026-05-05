@@ -1,6 +1,4 @@
-"""Entry-point that wires all sub-command groups into the root CLI."""
-
-from __future__ import annotations
+"""Main CLI entry point that assembles all sub-commands."""
 
 import click
 
@@ -20,6 +18,11 @@ from envault.watch_cli import watch_cmd
 from envault.schema_cli import schema_cmd
 from envault.env_check_cli import check_cmd
 from envault.share_cli import share_cmd
+from envault.env_inject_cli import inject_cmd
+from envault.remote_cli import remote_cmd
+from envault.hook_cli import hook_cmd
+from envault.pin_cli import pin_cmd
+from envault.namespace_cli import namespace_cmd
 
 
 cli.add_command(audit_cmd)
@@ -37,7 +40,16 @@ cli.add_command(watch_cmd)
 cli.add_command(schema_cmd)
 cli.add_command(check_cmd)
 cli.add_command(share_cmd)
+cli.add_command(inject_cmd)
+cli.add_command(remote_cmd)
+cli.add_command(hook_cmd)
+cli.add_command(pin_cmd)
+cli.add_command(namespace_cmd)
 
 
-def main() -> None:  # pragma: no cover
+def main():
     cli()
+
+
+if __name__ == "__main__":
+    main()
