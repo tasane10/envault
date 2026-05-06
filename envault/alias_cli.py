@@ -49,7 +49,8 @@ def remove_alias_cmd(alias: str, profile: str):
 
 @alias_cmd.command("list")
 @click.option("--profile", default="default", show_default=True)
-def list_aliases_cmd(profile: str):
+@click.option("--verbose", "-v", is_flag=True, default=False, help="Show the resolved value for each alias.")
+def list_aliases_cmd(profile: str, verbose: bool):
     """List all aliases in the vault."""
     password = prompt_password(confirm=False)
     vault_path = get_profile_vault_path(profile)
@@ -59,4 +60,8 @@ def list_aliases_cmd(profile: str):
         click.echo("No aliases defined.")
         return
     for alias, key in pairs:
-        click.echo(f"  {alias} -> {key}")
+        if verbose:
+            resolved = variables.get(key, {}).get("value", "<unresolved>")
+            click.echo(f"  {alias} -> {key} (value: {resolved})")
+        else:
+            click.echo(f"  {alias} -> {key}")
