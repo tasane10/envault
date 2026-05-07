@@ -71,6 +71,19 @@ def test_remove_from_group_prunes_empty_group(base_vars):
     assert "database" not in get_groups(v)
 
 
+def test_remove_from_group_raises_for_unknown_key(base_vars):
+    """Removing a key not in the group should raise a KeyError."""
+    v = set_group(base_vars, "DB_HOST", "database")
+    with pytest.raises(KeyError):
+        remove_from_group(v, "API_KEY", "database")
+
+
+def test_remove_from_group_raises_for_unknown_group(base_vars):
+    """Removing a key from a non-existent group should raise a KeyError."""
+    with pytest.raises(KeyError):
+        remove_from_group(base_vars, "DB_HOST", "nonexistent")
+
+
 def test_filter_by_group_returns_subset(base_vars):
     v = set_group(base_vars, "DB_HOST", "database")
     v = set_group(v, "DB_PORT", "database")
